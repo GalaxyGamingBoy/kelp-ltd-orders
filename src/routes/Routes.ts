@@ -1,11 +1,18 @@
 import Route from "../types/Route";
 import { Express } from "express";
+import Airtable from "../db/Airtable";
 import { HTTPMethods } from "../types/HTTPMethods";
 import { HTTPStatusCodes } from "../types/HTTPStatusCodes";
 
 const appRoutes: Array<Route> = [
     new Route("index", "/", HTTPMethods.GET, (_, res) => {
-        res.end(HTTPStatusCodes.OK).end("Hello Express!");
+        res.status(HTTPStatusCodes.OK).end("Hello Express!");
+    }),
+    new Route("getOrders", "/orders", HTTPMethods.GET, async (_, res) => {
+        await Airtable.getOrders(res);
+    }),
+    new Route("getOrders", "/orders/:ign", HTTPMethods.GET, async (req, res) => {
+        await Airtable.getOrdersByIGN(res, req.params.ign);
     })
 ]
 
