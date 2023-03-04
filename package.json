@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=server.js",
+    "build": "esbuild src/index.ts --bundle --minify --platform=node --packages=external --outfile=server.js",
     "build:dev": "esbuild src/index.ts --bundle --platform=node --outfile=serverDev.js",
     "start": "node server.js",
     "start:dev": "node serverDev.js",
